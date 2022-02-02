@@ -6,7 +6,7 @@ public class Employee {
     private String middleName;
     private float salary;
     private int department;
-    private static int id;
+    private int id;
    private static Integer counter = 1;
 
     public Employee(String firstName, String lastName, String middleName, float salary, int department, int id) {
@@ -21,11 +21,12 @@ public class Employee {
     @Override
     public String toString() {
         return "FirstName: " + firstName + ",  LastName: " + lastName + ",  MiddleName: "
-                + middleName + ",  Salary: " + salary + ", Department: " + department + ", " + id;
+                + middleName + ",  Salary: " + salary + ", Department: " + department + ", ID: " + id;
     }
     public static int getId() {
-        return id;
+        return 0;
     }
+
     public String getFirstName() {
         return firstName;
     }

@@ -1,7 +1,10 @@
 package ru.skypro;
 
-public class Main {
+import java.util.Arrays;
 
+public class Main {
+    //1. Получить список всех сотрудников со всеми имеющимися по ним данными
+    // (вывести в консоль значения всех полей (toString)).
     public static boolean addEmployee(Employee[] employees, Employee newEmployee) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] == null) {
@@ -11,25 +14,89 @@ public class Main {
         }
         return false;
     }
+
+    //1. Получить список всех сотрудников со всеми имеющимися по ним данными
+    // (вывести в консоль значения всех полей (toString)).
     public static void printAllEmployees(Employee[] employees) {
+        System.out.println("List of All employees");
         for (int i = 0; i < employees.length; i++) {
-            System.out.println("List of All employees: " + employees[i].toString());
+            System.out.println(employees[i].toString());
         }
         }
 
-    public static void printEmployeesName(String firstName, String lastName, String middleName) {
-            System.out.println("List of All employees: ");
+//2. Посчитать сумму затрат на зарплаты в месяц.
+    private static float printAllSalaries(Employee[] employeeSalary) {
+        float sum = 0;
+        for (int i=0; i < employeeSalary.length; i ++){
+            sum += employeeSalary[i].getSalary();
         }
-
-    private static void printEmployeesName() {
-        System.out.println(Employee.getFirstName);
+        System.out.println("Сумма затрат на зарплаты в месяц составляет " + sum);
+        return sum;
     }
 
+    //3. Найти сотрудника с минимальной зарплатой.
+    private static Employee minimumSalaryEmployee(Employee[] employees) {
+        float min = employees[0].getSalary();
+           int index = 0;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getSalary() < min) {
+                min = employees[i].getSalary();
+                index = i;
+            }
+            }
+        System.out.println("Сумма минимальной зарплаты в месяц составляет " + min +
+                " и это сотрудник " + employees[index]);
+        return employees[index];
+    }
+
+    //4. Найти сотрудника с максимальной зарплатой.
+    private static Employee maximumSalary(Employee[] employees) {
+        float max = employees[0].getSalary();
+        int index = 0;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getSalary() > max) {
+                max = employees[i].getSalary();
+                index = i;
+            }
+        }
+        System.out.println("Сумма максимальной зарплаты в месяц составляет " + max +
+                " и это сотрудник " + employees[index]);
+        return employees[index];
+    }
+
+    //5. Подсчитать среднее значение зарплат.
+    private static float printAverageSalaries(Employee[] averageSalary) {
+        float sum = 0;
+        for (int i=0; i < averageSalary.length; i ++){
+            sum += averageSalary[i].getSalary();
+}
+        float average = sum / averageSalary.length;
+        System.out.println("Средняя сумма затрат на зарплаты в месяц составляет " + average);
+        return sum;
+    }
+
+    //6. Получить Ф. И. О. всех сотрудников (вывести в консоль).
+    private static void printEmployeeName(Employee[] employeeNames) {
+        System.out.println("Ф. И. О. всех сотрудников ");
+        for (int i=0; i < employeeNames.length; i ++){
+            employeeNames[i].getFirstName();
+            employeeNames[i].getLastName();
+            employeeNames[i].getMiddleName();
+            System.out.println("Ф. И. О. сотрудникa " + employeeNames[i].getFirstName() + " " +
+                    employeeNames[i].getLastName() + " " + employeeNames[i].getMiddleName());
+        }
+    }
+    public static void printEmployees(Employee[] employees) {
+        System.out.println("List of All employees");
+        for (int i = 0; i < employees.length; i++) {
+            System.out.println(employees[i].toString());
+        }
+    }
 
     public static void main(String[] args) {
 
         Employee[] employees = new Employee[10];
-        addEmployee(employees, new Employee("Ivan", "Ivanov", "Ivanovich", 10000, 1, Employee.getId()));
+        addEmployee(employees, new Employee("Ivan", "Ivanov", "Ivanovich", 100000, 1, Employee.getId()));
         addEmployee(employees, new Employee("Pavel", "Pavlov", "Pavlovich", 20000, 2, Employee.getId()));
         addEmployee(employees, new Employee("Oleg", "Ivanov", "Olegovich", 30000, 3, Employee.getId()));
         addEmployee(employees, new Employee("Ruslan", "Ruslanov", "Ruslanovich", 40000, 4, Employee.getId()));
@@ -38,64 +105,32 @@ public class Main {
         addEmployee(employees, new Employee("Kristina", "Mikhalkova", "Ivanovna", 70000, 2, Employee.getId()));
         addEmployee(employees, new Employee("Anna", "Petrova", "Pavlovna", 80000, 3, Employee.getId()));
         addEmployee(employees, new Employee("Marina", "Ivanova", "Ruslanovna", 90000, 4, Employee.getId()));
-        addEmployee(employees, new Employee("Diana", "Pavlova", "Denisovna", 100000, 5, Employee.getId()));
+        addEmployee(employees, new Employee("Diana", "Pavlova", "Denisovna", 250000, 5, Employee.getId()));
 
+       //1. Получить список всех сотрудников со всеми имеющимися по ним данными (toString)
         printAllEmployees(employees);
-        printEmployeesName()
+        System.out.println();
 
-        //    6. По умолчанию все поля должны передавать через конструктор (кроме id)
-        //    и заполняться в нем (включая id, который нужно получить из счетчика).
+        //2. Посчитать сумму затрат на зарплаты в месяц.
+        printAllSalaries(employees);
+        System.out.println();
 
-        //        2. Посчитать сумму затрат на зарплаты в месяц.
-        //        3. Найти сотрудника с минимальной зарплатой.
-        //        4. Найти сотрудника с максимальной зарплатой.
-        //        5. Подсчитать среднее значение зарплат (можно использовать для этого метод
-        //        из пункта b).
-        //        6. Получить Ф. И. О. всех сотрудников (вывести в консоль).
+        //3. Найти сотрудника с минимальной зарплатой.
+        minimumSalaryEmployee(employees);
+        System.out.println();
 
+        //4. Найти сотрудника с максимальной зарплатой.
+        maximumSalary(employees);
+        System.out.println();
 
+        //5. Подсчитать среднее значение зарплат.
+        printAverageSalaries(employees);
+        System.out.println();
 
-
-
-
-
-//Необходимо в классе с методом main создать массив объектов типа Book и положить туда созданные книги.
-//Написать статические методы для работы с массивом в классе, где располагается метод main:
-//Добавить книгу (найти свободную ячейку массива и положить туда книгу). Учесть, что этот метод может быть вызван любое количество раз (от 1 до 5) и каждая новая книга должна успешно укладываться в массив.
-//         b.   Напечатать в консоль все книги из массива в следующем формате: “Stephen King: The Stand: 1978”
-//Критерии оценки
-//В методе main создан массив и заполнен созданными ранее объектами.
-//Методы объявлены корректно.
-//Методы корректно справляются со своей задачей.
-
-//Сложный уровень
-//Создать класс Library, который будет иметь своим полем массив из прошлого уровня.
-//Учесть, что доступ к нему должен быть только из Library (private поле), а сеттеры и геттеры отсутствуют. Работать с массивом можно только через внутренние нестатические методы класса Library.
-//2. Конструктор класса должен получать в качестве параметра размер массива и инициализировать в себе поле массива тем размером, что пришел параметром.
-//3. Перенести методы из прошлого уровня в класс Library, сделать их нестатическими.
-//4. Создать новые нестатические методы в классе Library:
-//Напечатать информацию о книге по ее названию, которое приходит в метод в качестве параметра.
-//       Формат: “The Stand by Stephen King was published in 1978”
-//Изменить год публикации книги по ее названию.
-//       В метод подаются два параметра, а именно: название и новый год публикации. Нужно найти книгу и изменить ее год публикации.
-//Критерии оценки
-//Класс Library создан корректно.
-//Массив корректно перенесен в виде поля в класс Library.
-//Конструктор класса Library написан корректно.
-//Корректно перенесены методы, модификатор static удален.
-//Объявлены новые методы.
-//Методы корректно справляются со своей задачей.
-
-
-
-
-
-
-
+        //6. Получить Ф. И. О. всех сотрудников (вывести в консоль).
+        printEmployeeName(employees);
 
 
    }
-
-
 }
 
