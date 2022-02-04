@@ -3,8 +3,8 @@ package ru.skypro;
 import java.util.Arrays;
 
 public class Main {
-    //1. Получить список всех сотрудников со всеми имеющимися по ним данными
-    // (вывести в консоль значения всех полей (toString)).
+    //1.1 Получить список всех сотрудников со всеми имеющимися по ним данными
+    // Add employees
     public static boolean addEmployee(Employee[] employees, Employee newEmployee) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] == null) {
@@ -15,12 +15,16 @@ public class Main {
         return false;
     }
 
-    //1. Получить список всех сотрудников со всеми имеющимися по ним данными
+    //1.2 Получить список всех сотрудников со всеми имеющимися по ним данными
     // (вывести в консоль значения всех полей (toString)).
     public static void printAllEmployees(Employee[] employees) {
         System.out.println("List of All employees");
         for (int i = 0; i < employees.length; i++) {
-            System.out.println(employees[i].toString());
+            if (employees[i] != null) {
+                System.out.println(employees[i].toString());
+            } else if (employees[i] == null) {
+                System.out.println("EMPTY");
+            }
         }
         }
 
@@ -28,7 +32,9 @@ public class Main {
     private static float printAllSalaries(Employee[] employeeSalary) {
         float sum = 0;
         for (int i=0; i < employeeSalary.length; i ++){
+            if (employeeSalary[i] != null) {
             sum += employeeSalary[i].getSalary();
+        }
         }
         System.out.println("Сумма затрат на зарплаты в месяц составляет " + sum);
         return sum;
@@ -39,7 +45,7 @@ public class Main {
         float min = employees[0].getSalary();
            int index = 0;
         for (int i = 0; i < employees.length; i++) {
-            if (employees[i].getSalary() < min) {
+            if (employees[i] != null && employees[i].getSalary() < min) {
                 min = employees[i].getSalary();
                 index = i;
             }
@@ -54,7 +60,7 @@ public class Main {
         float max = employees[0].getSalary();
         int index = 0;
         for (int i = 0; i < employees.length; i++) {
-            if (employees[i].getSalary() > max) {
+            if (employees[i] != null && employees[i].getSalary() > max) {
                 max = employees[i].getSalary();
                 index = i;
             }
@@ -68,7 +74,9 @@ public class Main {
     private static float printAverageSalaries(Employee[] averageSalary) {
         float sum = 0;
         for (int i=0; i < averageSalary.length; i ++){
-            sum += averageSalary[i].getSalary();
+            if (averageSalary[i] != null) {
+                sum += averageSalary[i].getSalary();
+            }
 }
         float average = sum / averageSalary.length;
         System.out.println("Средняя сумма затрат на зарплаты в месяц составляет " + average);
@@ -82,15 +90,24 @@ public class Main {
             employeeNames[i].getFirstName();
             employeeNames[i].getLastName();
             employeeNames[i].getMiddleName();
+            if (employeeNames[i] != null) {
             System.out.println("Ф. И. О. сотрудникa " + employeeNames[i].getFirstName() + " " +
                     employeeNames[i].getLastName() + " " + employeeNames[i].getMiddleName());
+        }  else if (employeeNames[i] == null) {
+            System.out.println("EMPTY");
         }
     }
+    }
+
     public static void printEmployees(Employee[] employees) {
         System.out.println("List of All employees");
         for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {
             System.out.println(employees[i].toString());
-        }
+        }else if (employees[i] == null) {
+                System.out.println("EMPTY");
+            }
+    }
     }
 
     public static void main(String[] args) {
