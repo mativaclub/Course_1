@@ -71,14 +71,20 @@ public class Main {
     }
 
     //5. Подсчитать среднее значение зарплат.
-    private static float printAverageSalaries(Employee[] averageSalary) {
+    private static float printAverageSalaries(Employee[] employees) {
         float sum = 0;
-        for (int i=0; i < averageSalary.length; i ++){
-            if (averageSalary[i] != null) {
-                sum += averageSalary[i].getSalary();
+        int employeesQty = 0;
+        for (int i=0; i < employees.length; i ++){
+            if (employees[i] != null) {
+                sum += employees[i].getSalary();
             }
 }
-        float average = sum / averageSalary.length;
+        for (int i=0; i < employees.length; i ++){
+            if (employees[i] != null) {
+                employeesQty = i + 1;
+            }
+        }
+        float average = sum / employeesQty;
         System.out.println("Средняя сумма затрат на зарплаты в месяц составляет " + average);
         return sum;
     }
